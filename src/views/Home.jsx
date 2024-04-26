@@ -1,0 +1,65 @@
+import { useContext } from 'react';
+import { ApiContext } from '../context/ApiContext';
+import { CarritoContext } from '../context/CarritoContext';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container';
+import { useNavigate } from "react-router-dom";
+
+
+
+const Home = () => {
+
+  const pizzas = useContext(ApiContext);
+  const {carrito,setCarrito} = useContext(CarritoContext);
+  const navigate= useNavigate()
+  console.log(carrito)
+  
+
+
+  const handleSubmit=(id) =>{
+  
+    navigate(`/pizzas/${id}`)
+  }
+
+  const Agregaralcarrito=(id) =>{
+    setCarrito([...carrito,id])
+    navigate(`/carrito`)
+  
+  }
+
+  console.log(carrito)
+
+  
+ 
+    return (
+      <div className="photo-gallery">
+        {pizzas.map((pizza, index) => (
+          <div key={index} className="photo">
+            <img src={pizza.img} alt={pizza.name} />
+            <h4> {pizza.name}</h4>
+            <h5>Ingredientes:</h5>
+            <ul className="unordered-list">
+              <li  className="list-item"> {pizza.ingredients[0]}  </li>
+              <li  className="list-item"> {pizza.ingredients[1]}  </li>
+              <li  className="list-item"> {pizza.ingredients[2]}  </li>
+              <li  className="list-item"> {pizza.ingredients[3]}  </li>
+            </ul>
+            <h3>${pizza.price}</h3>
+            <button onClick={() => handleSubmit(pizza.name)}> Ver mas </button>
+            <button onClick={() => Agregaralcarrito(pizza)}> Añadir al carrito </button>
+
+
+          </div>
+        ))}
+      </div>
+    );
+  
+    
+
+}
+
+export default Home;
+
