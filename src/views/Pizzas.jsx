@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 export default function Pizzas() {
     const{id}=useParams()
     const pizzas = useContext(ApiContext);
-    const {carrito,setCarrito} = useContext(CarritoContext);
+    const {carrito,setCarrito,total, setTotal} = useContext(CarritoContext);
     const navigate= useNavigate()
     const pizza_escogida = pizzas.find((element) => element.name === id);
 

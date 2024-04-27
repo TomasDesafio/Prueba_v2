@@ -1,8 +1,20 @@
+      <div className="photo-gallery">
+        {pizzas.map((pizza, index) => (
+          <div key={index} className="photo">
+            <img src={pizza.img} alt={pizza.name} />
+            <h4> {pizza.name}</h4>
+            <h5>Ingredientes:</h5>
+            <ul className="unordered-list">
+              <li  className="list-item"> {pizza.ingredients[0]}  </li>
+              <li  className="list-item"> {pizza.ingredients[1]}  </li>
+              <li  className="list-item"> {pizza.ingredients[2]}  </li>
+              <li  className="list-item"> {pizza.ingredients[3]}  </li>
+            </ul>
+            <h3>${pizza.price}</h3>
+            <button onClick={() => handleSubmit(pizza.name)}> Ver mas </button>
+            <button onClick={() => Agregaralcarrito(pizza)}> Añadir al carrito </button>
 
-    <div style={{display:"grid",gridTemplateColumns:"auto auto auto auto auto auto"}}>
-      {pizzas.map((pizza, index) => (
-            <div key={index} className="photo">
-              <h2>{pizza.name}</h2>
-              <img src={pizza.img} alt={pizza.name}/>
-              <button onClick={() => handleSubmit(pizza.name)}> Ver mas </button>
-            </div>
+
+          </div>
+        ))}
+      </div>

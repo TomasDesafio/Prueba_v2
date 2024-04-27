@@ -9,7 +9,7 @@ const ApiProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        //console.log("probanado data dedee pizzas.json:", pizzasData);
+        console.log("probanado data dedee pizzas.json:", pizzasData);
         setPizzas(pizzasData);
       } catch (error) {
         console.error("errror  data de pizzas.json:", error);
@@ -19,7 +19,7 @@ const ApiProvider = ({ children }) => {
     fetchData();
   }, []);
 
-  //console.log("pizzas!!!!!:", pizzas); 
+  console.log("pizzas!!!!!:", pizzas); 
 
   return (
     <ApiContext.Provider value={pizzas}>
