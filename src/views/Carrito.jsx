@@ -8,41 +8,57 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container';
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect, createContext } from "react";
 
 
 
 export default function Carrito() {
     const pizzas = useContext(ApiContext);
     const {carrito,setCarrito,total, setTotal} = useContext(CarritoContext);
+    const [resulta, setResulta] = useState([]);
     const navigate= useNavigate()
-
-    const eliminar = (pizza) => {
-      //const imageneliminada=carrito.find((photo) =>photo.id === photo.id);
-      
-
-      var indice = carrito.indexOf(pizza); // obtenemos el indice
-      var carrito_new=carrito.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
-      //const nuevoArreglo = carrito.filter(objeto => objeto !== imageneliminada);
-      //console.log(nuevoarreglo)
     
-     
+
+    const eliminar = (id) => {
+      const pizzaeliminada=carrito.find((pizza) =>pizza.id === id);
+      
+      console.log(pizzaeliminada.name)
+      var indice = carrito.indexOf(pizzaeliminada); // obtenemos el indice
+      //console.log(indice)
+      //console.log(carrito)
+      var carrito_nuevo=carrito.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+      //const nuevoArreglo = carrito.filter(objeto => objeto !== imageneliminada);
+      //console.log(carrito_nuevo)
+      //console.log(carrito)
+      var f=calcularFrecuencia(carrito)
+      var pedido=calcularTotalPedido(f)
 
        
      
-      setCarrito(carrito_new);
+      setCarrito(carrito);
+      setResulta(f)
+      setTotal(pedido)
+      console.log(carrito)
     };
 
     const agregar = (id) => {
       //e.preventDefault();
-      const imagenfavorita=carrito.find((photo) =>photo.id === id);
+      const imagenfavorita=pizzas.find((photo) =>photo.id === id);
       setCarrito([...carrito, imagenfavorita]);
+      var f=calcularFrecuencia(carrito)
+     
+      var pedido=calcularTotalPedido(f)
+      setResulta(f)
+      setTotal(pedido)
+      
+      
       //setLike('true')
       
     
     };
 
 
-
+    
 
     function calcularFrecuencia(arreglo) {
       // Creamos un objeto para almacenar la frecuencia de cada objeto en el arreglo
@@ -84,8 +100,9 @@ function calcularTotalPedido(carrito) {
   }
   return total;
 }
-  let pedido= calcularTotalPedido(resultado)
-  setTotal(pedido)
+  calcularTotalPedido(resultado)
+ setTotal(calcularTotalPedido(resultado)
+)
   
 
   
@@ -103,7 +120,7 @@ function calcularTotalPedido(carrito) {
                   <img src={pizza.img} alt={pizza.name} />
                   <h4> {pizza.name}</h4>
                   <h3> Total:${pizza.price*pizza.frecuencia}</h3>
-                  <button onClick={() =>eliminar(pizza)}>-</button> 
+                  <button onClick={() =>eliminar(pizza.id)}>-</button> 
                   <h3> Cantidad: {pizza.frecuencia}</h3>
                   <button onClick={() =>agregar(pizza.id)}>+</button> 
               
@@ -114,7 +131,7 @@ function calcularTotalPedido(carrito) {
               </div>
             
           ))}
-           <h2>Total a pagar:{pedido}</h2>
+           <h2>Total a pagar:{total}</h2>
            <button>Pagar</button>  
         </div>
         
