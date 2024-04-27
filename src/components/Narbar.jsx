@@ -14,15 +14,7 @@ const Navbar = () => {
           to="/"
         >
           {" "}
-          Home{" "}
-        </NavLink>
-
-        <NavLink
-          className={setActiveClass}
-          to="/pizzas"
-        >
-          {" "}
-          Pizzas{" "}
+          Pizzeria{" "}
         </NavLink>
 
         <NavLink
@@ -30,10 +22,10 @@ const Navbar = () => {
           to="/carrito"
         >
           {" "}
-          Carrito{" "}
+          {total}{" "}
         </NavLink>
 
-        {total}
+        
 
         
 

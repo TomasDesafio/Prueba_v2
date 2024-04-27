@@ -15,6 +15,35 @@ export default function Carrito() {
     const pizzas = useContext(ApiContext);
     const {carrito,setCarrito,total, setTotal} = useContext(CarritoContext);
     const navigate= useNavigate()
+
+    const eliminar = (pizza) => {
+      //const imageneliminada=carrito.find((photo) =>photo.id === photo.id);
+      
+
+      var indice = carrito.indexOf(pizza); // obtenemos el indice
+      var carrito_new=carrito.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+      //const nuevoArreglo = carrito.filter(objeto => objeto !== imageneliminada);
+      //console.log(nuevoarreglo)
+    
+     
+
+       
+     
+      setCarrito(carrito_new);
+    };
+
+    const agregar = (id) => {
+      //e.preventDefault();
+      const imagenfavorita=carrito.find((photo) =>photo.id === id);
+      setCarrito([...carrito, imagenfavorita]);
+      //setLike('true')
+      
+    
+    };
+
+
+
+
     function calcularFrecuencia(arreglo) {
       // Creamos un objeto para almacenar la frecuencia de cada objeto en el arreglo
       let frecuencia = {};
@@ -66,22 +95,27 @@ function calcularTotalPedido(carrito) {
 
         return (
       
-          <div className="photo-gallery">
-          {resultado.map((pizza, index) => (
-            <div key={index} className="photo">
-              <img src={pizza.img} alt={pizza.name} />
-              <h4> {pizza.name}</h4>
-              <h3> Cantidad: {pizza.frecuencia}</h3>
+          <div>
+            <h2>Detalle del pedido</h2>
+            {resultado.map((pizza, index) => (
+              <div key={index} className="contenedor_carrito">
+                <div className="contenedor_carritointerior">
+                  <img src={pizza.img} alt={pizza.name} />
+                  <h4> {pizza.name}</h4>
+                  <h3> Total:${pizza.price*pizza.frecuencia}</h3>
+                  <button onClick={() =>eliminar(pizza)}>-</button> 
+                  <h3> Cantidad: {pizza.frecuencia}</h3>
+                  <button onClick={() =>agregar(pizza.id)}>+</button> 
               
-              <h3>${pizza.price*pizza.frecuencia}</h3>
-              
-              
+                  
+                </div>
+      
   
-  
-            </div>
+              </div>
             
           ))}
-          <h2>Total a pagar:{pedido}</h2>
+           <h2>Total a pagar:{pedido}</h2>
+           <button>Pagar</button>  
         </div>
         
         );       

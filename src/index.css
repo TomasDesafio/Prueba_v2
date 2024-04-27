@@ -14,6 +14,56 @@
   height: auto;
 }
 
+.contenedor_pizzas {
+  display: flex; /* Establece el contenedor como un flexbox */
+  align-items: center; /* Centra verticalmente los elementos */
+  margin-top: 100px;
+}
+
+.contenedor_pizzas img {
+  width: 500px; /* Ancho de la imagen */
+  height: auto; /* Altura automática para mantener la proporción */
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.contenedor_pizzas p {
+  margin: 0; /* Elimina el margen predeterminado del párrafo */
+}
+.contenedor_pizzas_precio{
+  display: flex; /* Establece el contenedor como un flexbox */
+  flex-direction: row;
+  column-gap: 20px;
+  
+}
+.contenedor_carrito {
+  display: flex; /* Establece el contenedor como un flexbox */
+  flex-direction: column;
+  align-items: center; /* Centra verticalmente los elementos */
+  margin-top: 10px;
+  justify-content: center
+  ;
+}
+
+.contenedor_carritointerior {
+  display: flex; /* Establece el contenedor como un flexbox */
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; /* Centra verticalmente los elementos */
+  margin-top: 10px;
+  column-gap: 30px;
+}
+
+.contenedor_carritointerior img {
+  width: 75px; /* Ancho de la imagen */
+  height: auto; /* Altura automática para mantener la proporción */
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+  column-gap: 10px;
+}
+
+.contenedor_carrito p {
+  margin: 0; /* Elimina el margen predeterminado del párrafo */
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

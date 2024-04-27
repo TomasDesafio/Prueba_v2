@@ -27,18 +27,23 @@ export default function Pizzas() {
 
 
   return (
-    <div>
-        <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={pizza_escogida.img} />
-      <Card.Body>
-        <Card.Title>{pizza_escogida.name}</Card.Title>
-        <Card.Text>
-          {pizza_escogida.desc}
-        </Card.Text>
-        <Button variant="primary" onClick={() => Agregaralcarrito(pizza_escogida.id)} >Añadir al Carrito</Button>
-      </Card.Body>
-    </Card>
-
+    <div className="contenedor_pizzas">
+      <img src={pizza_escogida.img} alt={pizza_escogida.name}></img>
+      <div>
+        <h2>{pizza_escogida.name}</h2>
+        <p>{pizza_escogida.desc}</p>
+        <h3>Ingredientes</h3>
+          <p>{pizza_escogida.ingredients[0]}</p>
+          <p>{pizza_escogida.ingredients[1]}</p>
+          <p>{pizza_escogida.ingredients[2]}</p>
+          <p>{pizza_escogida.ingredients[3]}</p>
+          <div >
+            <h4>${pizza_escogida.price}</h4>
+            <button variant="primary" onClick={() => Agregaralcarrito(pizza_escogida)}>Añadir al Carrito</button>
+          </div>
+      </div>
+          
+        
     </div>
   )
 }

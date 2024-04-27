@@ -56,7 +56,7 @@ const Home = () => {
 
           </div>
         ))}
-        <p>Total:{total}</p>
+        
       </div>
       
       );
